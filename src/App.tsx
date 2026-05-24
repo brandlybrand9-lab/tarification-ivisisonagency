@@ -138,9 +138,9 @@ export default function App() {
       duration: t.durations.leader,
       buttonText: t.btnMore,
       icon: Trophy,
-      iconColor: 'text-white',
-      iconBg: 'bg-gradient-to-br from-[#2541b2] to-blue-600 shadow-xl shadow-[#2541b2]/30',
-      isPopular: true,
+      iconColor: 'text-blue-600',
+      iconBg: 'bg-blue-50 leading-none',
+      isPopular: false,
     },
     {
       id: 'custom',
@@ -150,9 +150,9 @@ export default function App() {
       duration: t.durations.custom,
       buttonText: t.btnContact,
       icon: Handshake,
-      iconColor: 'text-slate-800',
-      iconBg: 'bg-slate-100 leading-none',
-      isPopular: false,
+      iconColor: 'text-white',
+      iconBg: 'bg-gradient-to-br from-[#2541b2] to-blue-600 shadow-xl shadow-[#2541b2]/30',
+      isPopular: true,
     },
   ];
 
