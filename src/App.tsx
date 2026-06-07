@@ -5,8 +5,11 @@ import React, { useState } from 'react';
 const translations = {
   fr: {
     exclusive: "Offres exclusives",
-    title: "Prix de Sponsoring",
-    subtitle: "Choisissez le pack le plus adapté à la croissance de votre projet, et profitez de notre expertise pour obtenir les meilleurs résultats.",
+    title: "Nos Offres & Tarifs",
+    subtitle: "Découvrez nos packs complets et nos services à la carte pour exploser vos résultats.",
+    sponsoringTitle: "Sponsoring & Gestion",
+    individualPricesTitle: "Services & Tarifs Individuels",
+    individualPricesDesc: "Composez votre propre stratégie à la carte.",
     popular: "Le plus plébiscité",
     currency: "DZD",
     durations: { startup: "1 Semaine", growth: "2 Semaines", leader: "3 Semaines", custom: "1 Mois" },
@@ -21,6 +24,15 @@ const translations = {
     ctaBtn: "Discutons de votre projet",
     waMessageCustom: "Bonjour, je veux faire un pack sur-mesure pour mon projet.",
     waMessagePack: "Bonjour, je suis intéressé(e) par le ",
+    promoTag: "Offres Spéciales",
+    promoSectionTitle: "Packs Complets & Promos",
+    promoSectionDesc: "La combinaison parfaite de création, de gestion et de sponsoring pour des résultats explosifs.",
+    promos: [
+      { title: "Pack Starter+", price: "40 000", desc: "Idéal pour lancer votre projet et tester le marché.", feature: "Contenu + Ads", details: ["6 Vidéos (Reels/TikTok)", "8 Photos pro", "Sponsoring inclus"] },
+      { title: "Pack Growth+", price: "80 000", desc: "Pour accélérer les ventes et accroître la notoriété.", feature: "Contenu Pro + Ads Intenses", details: ["8 Vidéos dynamiques", "15 Photos haute qualité", "Sponsoring avancé inclus"] },
+      { title: "Pack Elite+", price: "120 000", desc: "Solution complète avec refonte de votre écosystème.", feature: "Site Web + Contenu + Ads", details: ["Site Vitrine", "12 Vidéos + 25 Photos", "Sponsoring intensif inclus"] },
+      { title: "Pack Ultimate", price: "200 000", desc: "Domination totale du marché. Accompagnement Premium.", feature: "E-commerce + 360° Digital", details: ["Site E-commerce", "15 Vidéos + 40 Photos", "Sponsoring VIP inclus"] }
+    ],
     portfolioTitle: "Notre Portfolio",
     portfolioDesc: "Découvrez nos réalisations, nos créations et nos performances réelles.",
     adsTitle: "Résultats Ads",
@@ -45,8 +57,11 @@ const translations = {
   },
   ar: {
     exclusive: "عروض حصرية",
-    title: "أسعار الرعاية",
-    subtitle: "اختر الباقة الأنسب لنمو وتطور مشروعك، واستفد من خبرتنا في تحقيق أفضل النتائج.",
+    title: "عروضنا وأسعارنا",
+    subtitle: "اكتشف باقاتنا المتكاملة وخدماتنا الفردية لتحقيق أفضل النتائج لمشروعك.",
+    sponsoringTitle: "الرعاية الإعلانية",
+    individualPricesTitle: "الخدمات والأسعار الفردية",
+    individualPricesDesc: "اختر الخدمات التي تناسب احتياجاتك لإنشاء إستراتيجيتك الخاصة.",
     popular: "الأكثر طلباً",
     currency: "د.ج",
     durations: { startup: "أسبوع واحد", growth: "أسبوعين", leader: "3 أسابيع", custom: "شهر واحد" },
@@ -61,6 +76,15 @@ const translations = {
     ctaBtn: "ناقش مشروعك معنا",
     waMessageCustom: "مرحباً، أريد عمل باقة (Pack) مخصصة لمشروعي.",
     waMessagePack: "مرحباً، أنا مهتم بـ ",
+    promoTag: "عروض خاصة",
+    promoSectionTitle: "الباقات المتكاملة والترويجية",
+    promoSectionDesc: "المزيج المثالي بين صناعة المحتوى، وتطوير المواقع، والرعاية الإعلانية لنتائج مذهلة.",
+    promos: [
+      { title: "Pack Starter+", price: "40 000", desc: "مثالي لإطلاق مشروعك واختبار السوق بنجاح.", feature: "محتوى + إعلانات", details: ["6 فيديوهات (Reels/TikTok)", "8 صور احترافية", "تمويل الإعلانات متضمن"] },
+      { title: "Pack Growth+", price: "80 000", desc: "تسريع المبيعات وبناء الوعي بعلامتك التجارية.", feature: "محتوى احترافي + إعلانات مكثفة", details: ["8 فيديوهات احترافية", "15 صورة عالية الجودة", "تمويل إعلاني متقدم متضمن"] },
+      { title: "Pack Elite+", price: "120 000", desc: "حل شامل مع تطوير وتجديد نظامك الرقمي.", feature: "موقع إلكتروني + محتوى + إعلانات", details: ["موقع تعريفي (Vitrine)", "12 فيديو + 25 صورة", "تمويل إعلاني مكثف متضمن"] },
+      { title: "Pack Ultimate", price: "200 000", desc: "السيطرة الكاملة على السوق. دعم حصري وشامل 360 درجة.", feature: "متجر إلكتروني + تسويق 360°", details: ["متجر إلكتروني متكامل", "15 فيديو + 40 صورة", "تمويل إعلاني VIP متضمن"] }
+    ],
     portfolioTitle: "معرض أعمالنا",
     portfolioDesc: "اكتشف إنجازاتنا، إبداعاتنا، ونتائجنا الحقيقية للمشاريع السابقة.",
     adsTitle: "نتائج الإعلانات",
@@ -204,159 +228,83 @@ export default function App() {
           </p>
         </motion.div>
 
-        {/* Pricing Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 lg:gap-8 max-w-7xl mx-auto">
-          {pricingPacks.map((pack, index) => (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1, ease: "easeOut" }}
-              key={pack.id + lang}
-              className={`bg-white/80 backdrop-blur-3xl rounded-[2.5rem] p-6 sm:p-8 shadow-[0_4px_24px_rgb(0,0,0,0.02)] hover:shadow-[0_12px_48px_rgb(37,65,178,0.08)] border flex flex-col items-center relative z-20 group transition-all duration-500 ${
-                pack.isPopular 
-                  ? 'border-[#2541b2]/10 ring-2 ring-[#2541b2]/5 md:-translate-y-4 z-30 bg-white/95' 
-                  : 'border-white/60 hover:border-[#2541b2]/10'
-              }`}
-            >
-              {pack.isPopular && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#2541b2] to-blue-500 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-md whitespace-nowrap tracking-wide uppercase" dir={dir}>
-                  {t.popular}
-                </div>
-              )}
-
-              {/* Card Header */}
-              <div className="flex flex-col items-center justify-center gap-3 mb-6 w-full text-center">
-                <div className={`p-3 rounded-2xl ${pack.iconBg} transition-transform duration-300 group-hover:scale-110`}>
-                  <pack.icon className={`w-6 h-6 stroke-[2px] ${pack.iconColor}`} />
-                </div>
-                <h3 className="text-xl font-bold text-slate-900">{pack.title}</h3>
-              </div>
-
-              {/* Price */}
-              <div className={`mb-3 flex items-baseline justify-center gap-1.5 w-full ${isRtl ? 'flex-row' : 'flex-row'}`} dir="ltr">
-                <span className="text-4xl sm:text-5xl font-black tracking-tight text-slate-900">
-                  {pack.price}
-                </span>
-                <span className="text-xl font-bold text-slate-400">{pack.currency}</span>
-              </div>
-
-              {/* Duration */}
-              <div className="mb-8 w-full text-center">
-                <span className="text-[#2541b2] font-semibold bg-blue-50/50 border border-blue-100/50 inline-block px-4 py-1 rounded-full text-sm" dir={dir}>
-                  {pack.duration}
-                </span>
-              </div>
-
-              {/* Action Button */}
-              <a
-                href={`https://wa.me/213798184727?text=${encodeURIComponent(t.waMessagePack + pack.title)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`w-full py-3.5 px-6 rounded-[1.25rem] font-bold text-base transition-all active:scale-95 flex items-center justify-center gap-2 mt-auto ${
-                  pack.isPopular 
-                    ? 'bg-[#2541b2] text-white shadow-lg shadow-blue-500/20 hover:shadow-xl hover:shadow-blue-500/30 hover:-translate-y-0.5' 
-                    : pack.id === 'custom'
-                      ? 'bg-slate-900 text-white shadow-md hover:bg-slate-800 hover:-translate-y-0.5'
-                      : 'bg-slate-50 text-slate-600 hover:bg-slate-100 hover:text-slate-900 border border-slate-200/60 hover:-translate-y-0.5'
-                }`}
-                dir={dir}
-              >
-                {pack.buttonText}
-                {isRtl ? <ChevronLeft className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
-              </a>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Bento Grid */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ key: lang, duration: 0.6, delay: 0.2 }}
-          className="mt-16 max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6"
+        {/* 1. Promotional Combos Box (Moved to Top) */}
+        <motion.div
+           initial={{ opacity: 0, y: 30 }}
+           animate={{ opacity: 1, y: 0 }}
+           transition={{ key: lang, duration: 0.7, delay: 0.1 }}
+           className="w-full bg-[#0f172a] text-white rounded-[2.5rem] p-8 md:p-12 shadow-2xl relative group overflow-hidden border border-slate-800"
         >
-          <div className="bg-white/80 backdrop-blur-xl rounded-[2rem] p-8 shadow-sm border border-slate-100 hover:border-green-500/30 transition-colors group flex flex-col items-center md:items-start text-center md:text-start" dir={dir}>
-            <div className="w-14 h-14 rounded-2xl bg-green-50 flex items-center justify-center mb-6 border border-green-100 group-hover:scale-110 transition-transform">
-              <Palette className="w-7 h-7 text-green-600" />
+          {/* Background elements */}
+          <div className={`absolute top-0 ${isRtl ? 'left-0 transform -translate-x-1/3' : 'right-0 transform translate-x-1/3'} w-[600px] h-[600px] bg-gradient-to-bl from-[#2541b2]/40 to-purple-600/20 rounded-full blur-3xl -translate-y-1/3 group-hover:scale-110 transition-transform duration-1000 ease-out pointer-events-none`}></div>
+          <div className={`absolute bottom-0 ${isRtl ? 'right-0 transform translate-x-1/3' : 'left-0 transform -translate-x-1/3'} w-[500px] h-[500px] bg-gradient-to-tr from-cyan-500/20 to-transparent rounded-full blur-3xl translate-y-1/3 group-hover:scale-110 transition-transform duration-1000 ease-out pointer-events-none`}></div>
+          
+          <div className="relative z-10 flex flex-col mb-12 text-center items-center" dir={dir}>
+            <div className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-400/20 text-blue-300 text-sm font-bold mb-4">
+              <Sparkles className="w-4 h-4" />
+              <span>{t.promoTag}</span>
             </div>
-            <h4 className="text-slate-900 font-bold text-2xl mb-3">{t.contentTitle}</h4>
-            <p className="text-slate-500 font-medium mb-8">
-              {t.contentDesc}
+            <h3 className="text-3xl md:text-5xl font-black mb-4 tracking-tight">
+              {t.promoSectionTitle}
+            </h3>
+            <p className="text-slate-300 text-lg md:text-xl font-medium leading-relaxed max-w-2xl mx-auto">
+              {t.promoSectionDesc}
             </p>
-            <div className={`mt-auto pt-5 border-t border-slate-100 w-full ${isRtl ? 'text-right' : 'text-left'}`}>
-              <div className="text-sm font-semibold text-green-600 mb-1 tracking-wide uppercase">{t.from}</div>
-              <div className={`flex flex-wrap items-center gap-1.5 text-2xl font-black text-slate-900 tracking-tight ${isRtl ? 'justify-end' : 'justify-start'}`}>
-                <div className="flex items-baseline gap-1" dir="ltr">
-                  <span>4 000</span> <span className="text-base font-bold text-slate-500">{t.currency}</span>
-                </div>
-                <span className="text-slate-300 font-normal">-</span>
-                <div className="flex items-baseline gap-1" dir="ltr">
-                  <span>20 000</span> <span className="text-base font-bold text-slate-500">{t.currency}</span>
-                </div>
-              </div>
-            </div>
           </div>
 
-          <div className="bg-white/80 backdrop-blur-xl rounded-[2rem] p-8 shadow-sm border border-slate-100 hover:border-blue-500/30 transition-colors group flex flex-col items-center md:items-start text-center md:text-start" dir={dir}>
-            <div className="w-14 h-14 rounded-2xl bg-blue-50 flex items-center justify-center mb-6 border border-blue-100 group-hover:scale-110 transition-transform">
-              <Monitor className="w-7 h-7 text-blue-600" />
-            </div>
-            <h4 className="text-slate-900 font-bold text-2xl mb-3">{t.webTitle}</h4>
-            <p className="text-slate-500 font-medium mb-8">
-              {t.webDesc}
-            </p>
-            <div className={`mt-auto pt-5 border-t border-slate-100 w-full ${isRtl ? 'text-right' : 'text-left'}`}>
-              <div className="text-sm font-semibold text-blue-600 mb-1 tracking-wide uppercase">{t.from}</div>
-              <div className={`flex flex-wrap items-center gap-1.5 text-2xl font-black text-slate-900 tracking-tight ${isRtl ? 'justify-end' : 'justify-start'}`}>
-                <div className="flex items-baseline gap-1" dir="ltr">
-                  <span>20 000</span> <span className="text-base font-bold text-slate-500">{t.currency}</span>
+          <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 font-sans">
+            {t.promos.map((promo, idx) => (
+              <div key={idx} className="bg-slate-800/40 backdrop-blur-md border border-slate-700/50 hover:border-[#2541b2]/50 hover:bg-slate-800/70 rounded-3xl p-6 transition-all duration-300 hover:-translate-y-2 flex flex-col relative group/card">
+                {idx === 2 && (
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-cyan-400 to-blue-500 text-white text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap shadow-lg">
+                    {t.popular}
+                  </div>
+                )}
+                
+                <h4 className="text-lg md:text-xl font-bold text-white mb-2 text-center" dir={dir}>{promo.title}</h4>
+                
+                <div className={`flex items-baseline justify-center gap-1.5 mb-4`} dir="ltr">
+                  <span className="text-3xl lg:text-4xl font-black text-white">{promo.price}</span>
+                  <span className="text-sm font-bold text-slate-400">{t.currency}</span>
                 </div>
-                <span className="text-slate-300 font-normal">-</span>
-                <div className="flex items-baseline gap-1" dir="ltr">
-                  <span>100 000</span> <span className="text-base font-bold text-slate-500">{t.currency}</span>
+                
+                <p className="text-slate-400 text-sm mb-6 flex-grow text-center" dir={dir}>{promo.desc}</p>
+                
+                <div className="bg-slate-900/60 rounded-xl p-3 mb-6 border border-slate-700/50 text-center text-xs md:text-sm font-medium text-blue-300" dir={dir}>
+                  {promo.feature}
                 </div>
+                
+                {promo.details && (
+                  <ul className="mb-8 space-y-3 flex-grow" dir={dir}>
+                    {promo.details.map((detail, i) => (
+                      <li key={i} className="flex items-start gap-2.5 text-slate-300 text-sm">
+                        <div className="mt-0.5 min-w-[16px] h-4 rounded-full bg-blue-500/20 flex items-center justify-center">
+                          <svg className="w-2.5 h-2.5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                          </svg>
+                        </div>
+                        <span className="leading-snug">{detail}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                
+                <a
+                  href={`https://wa.me/213798184727?text=${encodeURIComponent(t.waMessagePack + promo.title)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`w-full py-3 px-4 rounded-xl font-bold text-sm transition-all active:scale-95 flex items-center justify-center gap-2 mt-auto border ${idx === 2 ? 'bg-[#2541b2] border-[#2541b2] text-white shadow-lg shadow-blue-500/20 hover:bg-blue-600' : 'bg-transparent border-slate-600 text-slate-300 hover:bg-slate-700 hover:text-white'}`}
+                  dir={dir}
+                >
+                  {t.btnMore}
+                  {isRtl ? <ChevronLeft className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
+                </a>
               </div>
-            </div>
-          </div>
-
-          {/* CTA Box */}
-          <div className="md:col-span-2 mt-2 bg-[#0f172a] text-white rounded-[2.5rem] p-10 md:p-14 shadow-2xl overflow-hidden relative group">
-            <div className={`absolute top-0 ${isRtl ? 'left-0 transform -translate-x-1/3' : 'right-0 transform translate-x-1/3'} w-[500px] h-[500px] bg-gradient-to-bl from-[#2541b2]/40 to-transparent rounded-full blur-3xl -translate-y-1/3 group-hover:scale-110 transition-transform duration-1000 ease-out pointer-events-none`}></div>
-            <div className={`absolute bottom-0 ${isRtl ? 'right-0 transform translate-x-1/3' : 'left-0 transform -translate-x-1/3'} w-[400px] h-[400px] bg-gradient-to-tr from-cyan-500/20 to-transparent rounded-full blur-3xl translate-y-1/3 group-hover:scale-110 transition-transform duration-1000 ease-out pointer-events-none`}></div>
-            
-            <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-10" dir={dir}>
-              <div className={`text-center w-full ${isRtl ? 'md:text-right' : 'md:text-left'}`}>
-                <h3 className="text-4xl font-black mb-4 tracking-tight">
-                  {t.ctaTitle}
-                </h3>
-                <p className={`text-slate-300 text-lg md:text-xl font-medium leading-relaxed max-w-xl mx-auto ${isRtl ? 'md:ml-auto md:mr-0' : 'md:ml-0 md:mr-auto'}`}>
-                  {lang === 'ar' ? (
-                    <>
-                    يمكننا تصميم <strong className="text-white bg-white/10 px-2 py-0.5 rounded-md">باقة متكاملة (Pack)</strong> مخصصة لك بالكامل. <br className="hidden md:block" />
-                    أخبرنا عن مشروعك، وسنخبرك كيف يمكننا مساعدتك على أفضل وجه!
-                    </>
-                  ) : (
-                    <>
-                    Nous pouvons concevoir un <strong className="text-white bg-white/10 px-2 py-0.5 rounded-md">Pack complet</strong> sur-mesure pour vous. <br className="hidden md:block" />
-                    Parlez-nous de votre projet, et nous vous dirons comment nous pouvons vous aider !
-                    </>
-                  )}
-                </p>
-              </div>
-              <a 
-                href={`https://wa.me/213798184727?text=${encodeURIComponent(t.waMessageCustom)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex shrink-0 items-center justify-center gap-3 bg-white text-[#0f172a] hover:bg-gray-100 focus:ring-4 focus:ring-white/20 font-bold py-5 px-10 rounded-2xl transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 active:scale-95 text-lg w-full md:w-auto z-10"
-              >
-                <Handshake className="w-6 h-6 text-[#2541b2]" />
-                {t.ctaBtn}
-              </a>
-            </div>
+            ))}
           </div>
         </motion.div>
 
-        {/* Portfolios Section */}
+        {/* 2. Portfolios Section (Moved up) */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -440,6 +388,122 @@ export default function App() {
           </div>
         </motion.div>
 
+        {/* 3. Individual Prices (Moved to Bottom) */}
+        <motion.div
+           initial={{ opacity: 0, y: 30 }}
+           animate={{ opacity: 1, y: 0 }}
+           transition={{ key: lang, duration: 0.7, delay: 0.5 }}
+           className="mt-40 mb-16"
+        >
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-black text-slate-900 inline-block relative tracking-tight" dir={dir}>
+              {t.individualPricesTitle}
+              <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-1/2 h-1.5 bg-[#2541b2] rounded-full opacity-80"></div>
+            </h2>
+            <p className="text-slate-500 mt-6 font-medium text-lg" dir={dir}>{t.individualPricesDesc}</p>
+          </div>
+
+          <h3 className="text-2xl font-bold text-center mb-8 text-slate-800" dir={dir}>{t.sponsoringTitle}</h3>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 lg:gap-8 max-w-7xl mx-auto mb-12">
+            {pricingPacks.map((pack, index) => (
+              <div
+                key={pack.id + lang}
+                className={`bg-white/80 backdrop-blur-3xl rounded-[2.5rem] p-6 sm:p-8 shadow-[0_4px_24px_rgb(0,0,0,0.02)] hover:shadow-[0_12px_48px_rgb(37,65,178,0.08)] border flex flex-col items-center relative z-20 group transition-all duration-500 ${
+                  pack.isPopular 
+                    ? 'border-[#2541b2]/10 ring-2 ring-[#2541b2]/5 md:-translate-y-4 z-30 bg-white/95' 
+                    : 'border-white/60 hover:border-[#2541b2]/10'
+                }`}
+              >
+                {/* ... Card Content ... */}
+                {pack.isPopular && (
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#2541b2] to-blue-500 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-md whitespace-nowrap tracking-wide uppercase" dir={dir}>
+                    {t.popular}
+                  </div>
+                )}
+                <div className="flex flex-col items-center justify-center gap-3 mb-6 w-full text-center">
+                  <div className={`p-3 rounded-2xl ${pack.iconBg} transition-transform duration-300 group-hover:scale-110`}>
+                    <pack.icon className={`w-6 h-6 stroke-[2px] ${pack.iconColor}`} />
+                  </div>
+                  <h3 className="text-xl font-bold text-slate-900">{pack.title}</h3>
+                </div>
+                <div className={`mb-3 flex items-baseline justify-center gap-1.5 w-full`} dir="ltr">
+                  <span className="text-4xl sm:text-5xl font-black tracking-tight text-slate-900">
+                    {pack.price}
+                  </span>
+                  <span className="text-xl font-bold text-slate-400">{pack.currency}</span>
+                </div>
+                <div className="mb-8 w-full text-center">
+                  <span className="text-[#2541b2] font-semibold bg-blue-50/50 border border-blue-100/50 inline-block px-4 py-1 rounded-full text-sm" dir={dir}>
+                    {pack.duration}
+                  </span>
+                </div>
+                <a
+                  href={`https://wa.me/213798184727?text=${encodeURIComponent(t.waMessagePack + pack.title)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`w-full py-3.5 px-6 rounded-[1.25rem] font-bold text-base transition-all active:scale-95 flex items-center justify-center gap-2 mt-auto ${
+                    pack.isPopular 
+                      ? 'bg-gradient-to-br from-[#2541b2] to-blue-600 text-white shadow-lg shadow-blue-500/20 hover:shadow-xl hover:shadow-blue-500/30 hover:-translate-y-0.5' 
+                      : pack.id === 'custom'
+                        ? 'bg-gradient-to-br from-[#2541b2] to-blue-600 text-white shadow-lg hover:-translate-y-0.5'
+                        : 'bg-slate-50 text-slate-600 hover:bg-slate-100 hover:text-slate-900 border border-slate-200/60 hover:-translate-y-0.5'
+                  }`}
+                  dir={dir}
+                >
+                  {pack.buttonText}
+                  {isRtl ? <ChevronLeft className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
+                </a>
+              </div>
+            ))}
+          </div>
+
+          <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 pb-20">
+            <div className="bg-white/80 backdrop-blur-xl rounded-[2rem] p-8 shadow-sm border border-slate-100 hover:border-green-500/30 transition-colors group flex flex-col items-center md:items-start text-center md:text-start" dir={dir}>
+              <div className="w-14 h-14 rounded-2xl bg-green-50 flex items-center justify-center mb-6 border border-green-100 group-hover:scale-110 transition-transform">
+                <Palette className="w-7 h-7 text-green-600" />
+              </div>
+              <h4 className="text-slate-900 font-bold text-2xl mb-3">{t.contentTitle}</h4>
+              <p className="text-slate-500 font-medium mb-8">
+                {t.contentDesc}
+              </p>
+              <div className={`mt-auto pt-5 border-t border-slate-100 w-full ${isRtl ? 'text-right' : 'text-left'}`}>
+                <div className="text-sm font-semibold text-green-600 mb-1 tracking-wide uppercase">{t.from}</div>
+                <div className={`flex flex-wrap items-center gap-1.5 text-2xl font-black text-slate-900 tracking-tight ${isRtl ? 'justify-end' : 'justify-start'}`}>
+                  <div className="flex items-baseline gap-1" dir="ltr">
+                    <span>4 000</span> <span className="text-base font-bold text-slate-500">{t.currency}</span>
+                  </div>
+                  <span className="text-slate-300 font-normal">-</span>
+                  <div className="flex items-baseline gap-1" dir="ltr">
+                    <span>20 000</span> <span className="text-base font-bold text-slate-500">{t.currency}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white/80 backdrop-blur-xl rounded-[2rem] p-8 shadow-sm border border-slate-100 hover:border-blue-500/30 transition-colors group flex flex-col items-center md:items-start text-center md:text-start" dir={dir}>
+              <div className="w-14 h-14 rounded-2xl bg-blue-50 flex items-center justify-center mb-6 border border-blue-100 group-hover:scale-110 transition-transform">
+                <Monitor className="w-7 h-7 text-blue-600" />
+              </div>
+              <h4 className="text-slate-900 font-bold text-2xl mb-3">{t.webTitle}</h4>
+              <p className="text-slate-500 font-medium mb-8">
+                {t.webDesc}
+              </p>
+              <div className={`mt-auto pt-5 border-t border-slate-100 w-full ${isRtl ? 'text-right' : 'text-left'}`}>
+                <div className="text-sm font-semibold text-blue-600 mb-1 tracking-wide uppercase">{t.from}</div>
+                <div className={`flex flex-wrap items-center gap-1.5 text-2xl font-black text-slate-900 tracking-tight ${isRtl ? 'justify-end' : 'justify-start'}`}>
+                  <div className="flex items-baseline gap-1" dir="ltr">
+                    <span>20 000</span> <span className="text-base font-bold text-slate-500">{t.currency}</span>
+                  </div>
+                  <span className="text-slate-300 font-normal">-</span>
+                  <div className="flex items-baseline gap-1" dir="ltr">
+                    <span>100 000</span> <span className="text-base font-bold text-slate-500">{t.currency}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
       </div>
 
       {/* Ads Results Modal */}
