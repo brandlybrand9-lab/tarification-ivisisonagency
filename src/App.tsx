@@ -209,31 +209,14 @@ export default function App() {
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 pt-24">
         
-        {/* Modern Header */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ key: lang, duration: 0.6, ease: "easeOut" }}
-          className="text-center mb-20"
-        >
-          <div className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-blue-50 border border-blue-100 text-[#2541b2] text-sm font-bold mb-6">
-            <Sparkles className="w-4 h-4" />
-            <span>{t.exclusive}</span>
-          </div>
-          <h1 className="text-5xl md:text-6xl font-black text-slate-900 tracking-tight" dir={dir}>
-            {t.title}
-          </h1>
-          <p className="text-slate-500 mt-6 font-medium text-lg max-w-xl mx-auto" dir={dir}>
-            {t.subtitle}
-          </p>
-        </motion.div>
+
 
         {/* 1. Promotional Combos Box (Moved to Top) */}
         <motion.div
            initial={{ opacity: 0, y: 30 }}
            animate={{ opacity: 1, y: 0 }}
            transition={{ key: lang, duration: 0.7, delay: 0.1 }}
-           className="w-full bg-[#0f172a] text-white rounded-[2.5rem] p-8 md:p-12 shadow-2xl relative group overflow-hidden border border-slate-800"
+           className="w-full bg-[#0f172a] text-white rounded-[2rem] md:rounded-[2.5rem] p-6 sm:p-8 md:p-12 shadow-2xl relative group overflow-hidden border border-slate-800"
         >
           {/* Background elements */}
           <div className={`absolute top-0 ${isRtl ? 'left-0 transform -translate-x-1/3' : 'right-0 transform translate-x-1/3'} w-[600px] h-[600px] bg-gradient-to-bl from-[#2541b2]/40 to-purple-600/20 rounded-full blur-3xl -translate-y-1/3 group-hover:scale-110 transition-transform duration-1000 ease-out pointer-events-none`}></div>
@@ -244,10 +227,10 @@ export default function App() {
               <Sparkles className="w-4 h-4" />
               <span>{t.promoTag}</span>
             </div>
-            <h3 className="text-3xl md:text-5xl font-black mb-4 tracking-tight">
+            <h3 className="text-2xl sm:text-3xl md:text-5xl font-black mb-4 tracking-tight px-2">
               {t.promoSectionTitle}
             </h3>
-            <p className="text-slate-300 text-lg md:text-xl font-medium leading-relaxed max-w-2xl mx-auto">
+            <p className="text-slate-300 text-base md:text-xl font-medium leading-relaxed max-w-2xl mx-auto px-2">
               {t.promoSectionDesc}
             </p>
           </div>
@@ -264,7 +247,7 @@ export default function App() {
                 <h4 className="text-lg md:text-xl font-bold text-white mb-2 text-center" dir={dir}>{promo.title}</h4>
                 
                 <div className={`flex items-baseline justify-center gap-1.5 mb-4`} dir="ltr">
-                  <span className="text-3xl lg:text-4xl font-black text-white">{promo.price}</span>
+                  <span className="text-3xl sm:text-4xl font-black text-white tracking-tight">{promo.price}</span>
                   <span className="text-sm font-bold text-slate-400">{t.currency}</span>
                 </div>
                 
@@ -311,12 +294,12 @@ export default function App() {
           transition={{ key: lang, duration: 0.7, delay: 0.3 }}
           className="max-w-5xl mx-auto mt-32 text-center"
         >
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-black text-slate-900 inline-block relative tracking-tight" dir={dir}>
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-3xl md:text-4xl font-black text-slate-900 inline-block relative tracking-tight px-2" dir={dir}>
               {t.portfolioTitle}
               <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-1/2 h-1.5 bg-[#2541b2] rounded-full opacity-80"></div>
             </h2>
-            <p className="text-slate-500 mt-6 font-medium text-lg" dir={dir}>{t.portfolioDesc}</p>
+            <p className="text-slate-500 mt-5 md:mt-6 font-medium text-base md:text-lg px-4" dir={dir}>{t.portfolioDesc}</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
@@ -395,12 +378,12 @@ export default function App() {
            transition={{ key: lang, duration: 0.7, delay: 0.5 }}
            className="mt-40 mb-16"
         >
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-black text-slate-900 inline-block relative tracking-tight" dir={dir}>
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-3xl md:text-4xl font-black text-slate-900 inline-block relative tracking-tight px-2" dir={dir}>
               {t.individualPricesTitle}
               <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-1/2 h-1.5 bg-[#2541b2] rounded-full opacity-80"></div>
             </h2>
-            <p className="text-slate-500 mt-6 font-medium text-lg" dir={dir}>{t.individualPricesDesc}</p>
+            <p className="text-slate-500 mt-5 md:mt-6 font-medium text-base md:text-lg px-4" dir={dir}>{t.individualPricesDesc}</p>
           </div>
 
           <h3 className="text-2xl font-bold text-center mb-8 text-slate-800" dir={dir}>{t.sponsoringTitle}</h3>
@@ -458,8 +441,8 @@ export default function App() {
             ))}
           </div>
 
-          <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 pb-20">
-            <div className="bg-white/80 backdrop-blur-xl rounded-[2rem] p-8 shadow-sm border border-slate-100 hover:border-green-500/30 transition-colors group flex flex-col items-center md:items-start text-center md:text-start" dir={dir}>
+          <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 pb-12 md:pb-20">
+            <div className="bg-white/80 backdrop-blur-xl rounded-[1.5rem] md:rounded-[2rem] p-6 md:p-8 shadow-sm border border-slate-100 hover:border-green-500/30 transition-colors group flex flex-col items-center md:items-start text-center md:text-start" dir={dir}>
               <div className="w-14 h-14 rounded-2xl bg-green-50 flex items-center justify-center mb-6 border border-green-100 group-hover:scale-110 transition-transform">
                 <Palette className="w-7 h-7 text-green-600" />
               </div>
@@ -481,7 +464,7 @@ export default function App() {
               </div>
             </div>
 
-            <div className="bg-white/80 backdrop-blur-xl rounded-[2rem] p-8 shadow-sm border border-slate-100 hover:border-blue-500/30 transition-colors group flex flex-col items-center md:items-start text-center md:text-start" dir={dir}>
+            <div className="bg-white/80 backdrop-blur-xl rounded-[1.5rem] md:rounded-[2rem] p-6 md:p-8 shadow-sm border border-slate-100 hover:border-blue-500/30 transition-colors group flex flex-col items-center md:items-start text-center md:text-start" dir={dir}>
               <div className="w-14 h-14 rounded-2xl bg-blue-50 flex items-center justify-center mb-6 border border-blue-100 group-hover:scale-110 transition-transform">
                 <Monitor className="w-7 h-7 text-blue-600" />
               </div>
@@ -564,20 +547,20 @@ export default function App() {
                         </div>
                       </div>
                       
-                      <div className="grid grid-cols-3 gap-2">
+                      <div className="grid grid-cols-3 gap-1 md:gap-2">
                         <div>
-                          <p className="text-white font-black text-xl md:text-2xl">{ad.results}</p>
-                          <p className="text-slate-400 text-[11px] font-medium leading-tight mt-1">
+                          <p className="text-white font-black text-lg md:text-2xl break-all sm:break-normal truncate">{ad.results}</p>
+                          <p className="text-slate-400 text-[10px] md:text-[11px] font-medium leading-tight mt-1">
                             {ad.type}
                           </p>
                         </div>
-                        <div className={`${isRtl ? 'border-r pr-4' : 'border-l pl-4'} border-slate-700/60`}>
-                          <p className="text-white font-black text-xl md:text-2xl">{ad.cost}</p>
-                          <p className="text-slate-400 text-[11px] font-medium leading-tight mt-1">{t.costPerResult}</p>
+                        <div className={`${isRtl ? 'border-r pr-2 md:pr-4' : 'border-l pl-2 md:pl-4'} border-slate-700/60`}>
+                          <p className="text-white font-black text-lg md:text-2xl break-all sm:break-normal truncate">{ad.cost}</p>
+                          <p className="text-slate-400 text-[10px] md:text-[11px] font-medium leading-tight mt-1">{t.costPerResult}</p>
                         </div>
-                        <div className={`${isRtl ? 'border-r pr-4' : 'border-l pl-4'} border-slate-700/60`}>
-                          <p className="text-white font-black text-xl md:text-2xl">{ad.spend}</p>
-                          <p className="text-slate-400 text-[11px] font-medium leading-tight mt-1">{t.spend}</p>
+                        <div className={`${isRtl ? 'border-r pr-2 md:pr-4' : 'border-l pl-2 md:pl-4'} border-slate-700/60`}>
+                          <p className="text-white font-black text-lg md:text-2xl break-all sm:break-normal truncate">{ad.spend}</p>
+                          <p className="text-slate-400 text-[10px] md:text-[11px] font-medium leading-tight mt-1">{t.spend}</p>
                         </div>
                       </div>
                     </motion.div>
